@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Selector</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .login-btn {
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dropdown-menu {
+            border-radius: 15px;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
+            transform: translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .login-container.show .dropdown-menu {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 5px 10px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .user-option {
+            color: #4e73df;
+        }
+        
+        .admin-option {
+            color: #1cc88a;
+        }
+        
+        .hospital-option {
+            color: #e74a3b;
+        }
+        
+        .welcome-container {
+            max-width: 400px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-instruction {
+            font-weight: bold;
+            margin: 15px 0;
+            color: #495057;
+        }
+        
+        .welcome-heading {
+            font-weight: bold;
+            color: #0d6efd;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-heading:hover {
+            color: #0b5ed7;
+            transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(13, 110, 253, 0.2);
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="welcome-container">
+            <h2 class="welcome-heading" id="welcomeText">WELCOME TO OBCS</h2>
+            <p class="login-instruction">Select your login type:</p>
+            
+            <div class="login-container">
+                <button class="login-btn btn btn-primary">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item user-option" href="userlogin.html">
+                            <i class="fas fa-user"></i> User Login
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item admin-option" href="admin.html">
+                            <i class="fas fa-user-shield"></i> Admin Login
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item hospital-option" href="hopsitalogin.html">
+                            <i class="fas fa-hospital"></i> Hospital Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Custom JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginContainer = document.querySelector('.login-container');
+            const loginBtn = document.querySelector('.login-btn');
+            const welcomeText = document.getElementById('welcomeText');
+            
+            // Toggle dropdown on button click
+            loginBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                loginContainer.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                loginContainer.classList.remove('show');
+            });
+            
+            // Prevent dropdown from closing when clicking inside
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Handle option clicks
+            const options = document.querySelectorAll('.dropdown-item');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const optionType = this.classList.contains('user-option') ? 'User' : 
+                                      this.classList.contains('admin-option') ? 'Admin' : 'Hospital';
+                    alert(`Redirecting to ${optionType} login page`);
+                    loginContainer.classList.remove('show');
+                });
+            });
+            
+            // Welcome text animation on hover
+            welcomeText.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            welcomeText.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+            
+            // Initial animation when page loads
+            setTimeout(() => {
+                welcomeText.style.transition = 'all 0.5s ease';
+                welcomeText.style.opacity = '1';
+                welcomeText.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Set initial state for animation
+            welcomeText.style.opacity = '0';
+            welcomeText.style.transform = 'translateY(-20px)';
+        });
+    </script>
+</body>
+</html>
