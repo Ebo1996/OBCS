@@ -19,6 +19,7 @@ A full-stack web application for managing birth certificate registrations, appro
 - **Payment System** — Upload payment screenshot for certificate fee
 - **Role-based Login** — Separate login for Admin, Hospital, User, Kebele Staff, Officer
 
+
 ---
 
 ## Tech Stack
