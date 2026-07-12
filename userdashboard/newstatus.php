@@ -5,8 +5,8 @@ include "../setup/dbconnection.php";
 
 
 if (!isset($_SESSION["id"])) {
-    header:
-    "location:../public/login.php";
+    header("location:../public/login.php");
+    exit();
 } else {
     $user_id = $_SESSION["id"];
 }

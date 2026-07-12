@@ -1,6 +1,6 @@
 <?php
 include "../setup/dbconnection.php";
-$sql = "SELECT id,  Kebele_id_number, CONCAT(first_name, ' ',middle_name, ' ', last_name) AS full_name, date_of_birth, gender, address, nationality, photo_path role FROM kebele_ids LIMIT 10";
+$sql = "SELECT id, kebele_id_number, CONCAT(first_name, ' ',middle_name, ' ', last_name) AS full_name, date_of_birth, gender, address, nationality, photo_path, role FROM kebele_ids LIMIT 10";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>

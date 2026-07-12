@@ -1,18 +1,15 @@
 <?php
-// session_start();
+session_start();
 include "../setup/dbconnection.php";
- $sql = "SELECT * FROM officers";
- $sql = $conn->prepare($sql);
- $sql->execute();
- $result = $sql->get_result();
+ $officer_id = $_SESSION["officer_id"] ?? 0;
+ $stmt = $conn->prepare("SELECT * FROM kebele_officers WHERE id = ?");
+ $stmt->bind_param("i", $officer_id);
+ $stmt->execute();
+ $result = $stmt->get_result();
  if( $result->num_rows > 0){
      $officer = $result->fetch_assoc();
-     
  }else{
-
-     echo "use not found";
-    echo $_SESSION["officer_id"];
-    echo $_SESSION["officer_id"];
+     echo "Officer not found";
 }
 ?>
 <!DOCTYPE html>

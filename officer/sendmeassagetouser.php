@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+session_start();
+include "../setup/dbconnection.php";
+
+$users_sql = "SELECT id, CONCAT(first_name, ' ', middle_name, ' ', last_name) AS full_name FROM users ORDER BY first_name";
+$users_stmt = $conn->prepare($users_sql);
+$users_stmt->execute();
+$users_result = $users_stmt->get_result();
+?>
 <html lang="en">
 
 <head>

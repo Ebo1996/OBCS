@@ -8,11 +8,13 @@ $user_id = $_REQUEST["user_id"];
 $subject = $_REQUEST["subject"];
 $content = $_REQUEST["content"];
 
-$sql = "SELECT email , CONCAT(first_name, middle_name, last_name) AS full_name FROM users WHERE ID = $user_id";
+$stmt_user = $conn->prepare("SELECT email, CONCAT(first_name, ' ', middle_name, ' ', last_name) AS full_name FROM users WHERE id = ?");
+$stmt_user->bind_param("i", $user_id);
+$stmt_user->execute();
+$result = $stmt_user->get_result();
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   $user = $result->fetch_assoc();
-
 }
 
 

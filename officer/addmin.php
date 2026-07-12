@@ -3,7 +3,7 @@ session_start();
 include "../setup/dbconnection.php";
 
 // Retrieve all user applications from the database
-$sql = "SELECT id, CONCAT(first_name, ' ', middle_name,' ', last_name) AS full_name, dob, place_of_birth, gender,father_name, mother_name, curent_address FROM aplications";
+$sql = "SELECT id, CONCAT(first_name, ' ', middle_name,' ', last_name) AS full_name, dob, place_of_birth, gender,father_name, mother_name, current_address FROM applications";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>

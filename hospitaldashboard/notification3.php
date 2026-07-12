@@ -6,8 +6,10 @@ include '../setup/dbconnection.php';
 $hospital_id = $_SESSION['hospital_id'];
 ;
 
-// Fetch user-specific messages
-$msg_sql = "SELECT * FROM messages WHERE hospital_id = ? ORDER BY sent_at DESC";
+// Fetch messages for this hospital (messages are linked via user_id in hospitals table)
+$msg_sql = "SELECT m.* FROM messages m 
+            INNER JOIN hospitals h ON h.hospital_id = m.user_id 
+            WHERE h.hospital_id = ? ORDER BY m.sent_at DESC";
 $msg_stmt = $conn->prepare($msg_sql);
 $msg_stmt->bind_param("i", $hospital_id);
 $msg_stmt->execute();

@@ -78,7 +78,7 @@ try {
     $approved_by = $_SESSION['user_id'] ?? 1; // Fallback to admin ID 1 if session not set
 
     $stmt_insert->bind_param(
-        "sisssssssssi",
+        "sisssssssss",
         $certificate_id,
         $application['user_id'],
         $application['first_name'],
