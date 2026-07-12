@@ -1010,7 +1010,7 @@ $resultannounce = $stmt->get_result();
                     <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Providing efficient government services to our community with transparency and dedication</p>
                     <div class="hero-buttons mt-4" data-aos="fade-up" data-aos-delay="200">
                         <a href="#services" class="btn btn-primary me-3"><i class="bi bi-list-check me-1"></i> Our Services</a>
-                        <a href="sign-up.php" class="btn btn-outline-primary reg"><i class="bi bi-person-plus me-1"></i> Register Now</a>
+                        <a href="public/signUp.php" class="btn btn-outline-primary reg"><i class="bi bi-person-plus me-1"></i> Register Now</a>
                     </div>
                 </div>
             </div>

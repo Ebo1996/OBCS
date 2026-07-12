@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["submit"])) {
 
     // Insert new user (using prepared statement)
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, email, phone, password, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $firstname, $middlename, $lastname, $email, $phone, $hashed_password, $profile_image);
+    $stmt = $conn->prepare("INSERT INTO users (first_name, middle_name, last_name, current_address, email, phone, password, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $firstname, $middlename, $lastname, $current_address, $email, $phone, $hashed_password, $profile_image);
 
     if ($stmt->execute()) {
         $_SESSION["email"] = $email;

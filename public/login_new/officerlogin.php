@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // Prepare the SQL statement to prevent SQL Injection
     // if($role == 'user' || $role =='addmin'){
-    $sql = "SELECT * FROM officers WHERE email = ?";
+    $sql = "SELECT * FROM kebele_officers WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();

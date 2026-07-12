@@ -219,9 +219,9 @@
                   <label for="gender" class="form-label required-field">Gender</label>
                   <select class="form-select" name="gender" id="gender" required>
                     <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div class="col-md-4">
@@ -346,11 +346,11 @@
     $address = htmlspecialchars($_POST["address"]);
     $nameofdoctor = htmlspecialchars($_POST["name_of_doctor"]);
 
-    $sql = "INSERT INTO birth_records(record_id,hospital_id,child_name, dob, pob, tob, gender, weight, father_name, mother_name, phone, address, nameOfDoctor, HBR)
-              VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+    $sql = "INSERT INTO birth_records(hospital_id, child_name, dob, pob, tob, gender, weight, father_name, mother_name, phone, address, nameOfDoctor)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sisssssdssssss", $record_id, $hospital_id, $childname, $dob, $pob, $tob, $gender, $weight, $fatherName, $motherName, $phone, $address, $nameofdoctor, $HBR);
+    $stmt->bind_param("isssssdsssss", $hospital_id, $childname, $dob, $pob, $tob, $gender, $weight, $fatherName, $motherName, $phone, $address, $nameofdoctor);
 
     try {
       if ($stmt->execute()) {

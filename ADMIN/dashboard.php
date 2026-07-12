@@ -1,5 +1,12 @@
 <?php
+session_start();
 include '../setup/dbconnection.php';
+
+// Protect admin dashboard - redirect if not logged in
+if (!isset($_SESSION["email"]) || !isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
+    header("Location: ../public/login_new/addminlogin.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,7 +242,8 @@ include '../setup/dbconnection.php';
     <?php
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $_SESSION["email"]);
+    $email_session = $_SESSION["email"];
+    $stmt->bind_param("s", $email_session);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();

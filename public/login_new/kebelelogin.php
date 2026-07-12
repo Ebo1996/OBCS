@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["kebelelogin"])) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $kebele = $result->fetch_assoc();
-        echo $hospital["hospital_id"];
+        // echo removed: was referencing undefined $hospital variable
         if (password_verify($password, $kebele["password"])) {
             $_SESSION["kebele_id"] = $kebele["id"];
             header("location: ../../kebeledashboard/sidebar.php");
@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["kebelelogin"])) {
             </div>
 
             <div class="links">
-                <a href="forgetkebele.php" id="forgotPassword">
+                <a href="forgetpassword1.php" id="forgotPassword">
                     <i class="fas fa-key"></i> Forgot Password?
                 </a>
                 <a href="#" id="createAccount">

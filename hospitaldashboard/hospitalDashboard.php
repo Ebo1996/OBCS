@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION["hospital_id"])) {
+    header("Location: ../public/login_new/hopsitalogin.php");
+    exit;
+}
 if (isset($_GET["page"])) {
   $page = $_GET["page"];
 
