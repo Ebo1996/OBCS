@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include "setup/dbconnection.php";
 $sql = "SELECT * FROM feedback ";
 $stmt = $conn->prepare($sql);
